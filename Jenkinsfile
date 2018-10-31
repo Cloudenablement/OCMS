@@ -3,92 +3,92 @@ pipeline
    agent any
    stages 
    {
-         stage('Prerequisites') 
-	      {
+       stage('Prerequisites') 
+	   {
             steps 
-			   {                
-				   bat 'echo "Prerequisites"'
+			{                
+				bat 'echo "Prerequisites"'
             }
-         }      
-         stage('4.Uploading Databag') 
-		   {
+        }      
+        stage('4.Uploading Databag') 
+		{
             steps 
-			   {
+			{
                 bat 'echo "Step 4"'                
             }
-         }
-         stage('5.Vault Installation') 
-		   {
+        }
+        stage('5.Vault Installation') 
+		{
             steps 
-			   {
-               bat 'echo "Step 5"'
+			{
+                bat 'echo "Step 5"'
             }
-         }        
-         stage('6.OCMS Prerequisites') 
-		   {
+        }        
+        stage('6.OCMS Prerequisites') 
+		{
             steps 
-			   {
-               bat 'echo "Step 6"'
+			{
+                bat 'echo "Step 6"'
             }
-         }
-         stage('7.DB Installation') 
-		   {
+        }
+        stage('7.DB Installation') 
+		{
             steps 
-			   {
+			{
                 bat 'echo "Step 7"'
             }
-         }
-         stage('8.MI Domain Creation') 
-		   {
+        }
+        stage('8.MI Domain Creation') 
+		{
             steps 
-		   	{		
-               bat 'echo "Step 8"'
+			{		
+                bat 'echo "Step 8"'
             }
-         }
-         stage('9.Starting Servers') 
-		   {
+        }
+        stage('9.Starting Servers') 
+		{
             steps 
-			   {
-               bat 'echo "Step 9"'
+			{
+                bat 'echo "Step 9"'
             }
-         }
-         stage('10.OCMS Deployments') 
-		   {
+        }
+        stage('10.OCMS Deployments') 
+		{
             steps 
-			   {
-               bat 'echo "Step 10"'
+			{
+                bat 'echo "Step 10"'
             }
-         }
-         stage('11.Restarting All Servers') 
-		   {
+        }
+        stage('11.Restarting All Servers') 
+		{
             steps 
-			   {
-               bat 'echo "Step 11"'
+			{
+                bat 'echo "Step 11"'
             }
-         }        
-   }
-   post 
+        }        
+    }
+    post 
 	{
-         always 
-		   {
+        always 
+		{
             echo 'This will always run'
-         }
-         success 
-		   {
+        }
+        success 
+		{
             echo 'This will run only if successful'
-         }
-         failure 
-		   {
+        }
+        failure 
+		{
             echo 'This will run only if failed'
-         }
-         unstable 
-		   {
+        }
+        unstable 
+		{
             echo 'This will run only if the run was marked as unstable'
-         }
-         changed 
-		   {
+        }
+        changed 
+		{
             echo 'This will run only if the state of the Pipeline has changed'
             echo 'For example, if the Pipeline was previously failing but is now successful'
-         }
-   }
+        }
+    }
 }
