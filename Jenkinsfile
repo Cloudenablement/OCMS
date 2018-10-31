@@ -2,14 +2,7 @@ pipeline
 {
 	agent any
 	stages 
-	{
-		stage('Prerequisites') 
-		{
-			steps 
-			{                
-				bat 'echo "Prerequisites"'
-			}
-		}      
+	{    
 		stage('4.Uploading Databag') 
 		{
 			steps 
