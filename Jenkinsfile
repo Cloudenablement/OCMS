@@ -68,7 +68,7 @@ pipeline
 	{
 		always 
 		{
-			winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('mkdir C:\\Monal')]
+			echo 'This will always run'
 		}
 		success 
 		{
