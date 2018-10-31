@@ -23,8 +23,7 @@ pipeline
 					cd /d C:\Program Files\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_vault.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'abc_dc_1540988085', hostName: 'abc', winRMOperations: [invokeCommand('C:\\chef\\Pipeline')]
-				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}        
 		stage('6.OCMS Prerequisites') 
@@ -32,6 +31,11 @@ pipeline
 			steps 
 			{
 				bat 'echo "Step 6"'
+				bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\ocms_prerequisites.txt llg00fic.uk.oracle.com
+				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('7.DB Installation') 
@@ -39,6 +43,11 @@ pipeline
 			steps 
 			{
 				bat 'echo "Step 7"'
+				bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_db.txt llg00fic.uk.oracle.com
+				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('8.MI Domain Creation') 
@@ -46,6 +55,11 @@ pipeline
 			steps 
 			{		
 				bat 'echo "Step 8"'
+				bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_mi.txt llg00fic.uk.oracle.com
+				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('9.Starting Servers') 
@@ -53,6 +67,11 @@ pipeline
 			steps 
 			{
 				bat 'echo "Step 9"'
+				bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\start_admin.txt llg00fic.uk.oracle.com
+				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('10.OCMS Deployments') 
@@ -60,6 +79,11 @@ pipeline
 			steps 
 			{
 				bat 'echo "Step 10"'
+				bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_ocms.txt llg00fic.uk.oracle.com
+				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('11.Restarting All Servers') 
@@ -67,6 +91,11 @@ pipeline
 			steps
 			{
 				bat 'echo "Step 11"'
+				bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\start_all_servers.txt llg00fic.uk.oracle.com
+				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}        
 	}
@@ -81,8 +110,7 @@ pipeline
 			echo 'This will run only if successful'
 		}
 		failure 
-		{
-			winRMClient credentialsId: '__1540983652', hostName: '', winRMOperations: [invokeCommand('mkdir C:\\chef\\Pipeline')]
+		{			
 			echo 'This will run only if failed'
 		}
 		unstable 
