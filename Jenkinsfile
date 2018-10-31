@@ -9,7 +9,7 @@ pipeline
 			{
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					putty -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\upload_databag.txt llg00fic.uk.oracle.com
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\upload_databag.txt llg00fic.uk.oracle.com
 				'''
 				bat 'echo "Step 4"'                
 			}
