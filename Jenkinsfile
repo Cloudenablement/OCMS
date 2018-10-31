@@ -76,6 +76,7 @@ pipeline
 		}
 		failure 
 		{
+			winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('mkdir C:\\chef\\Pipeline')]
 			echo 'This will run only if failed'
 		}
 		unstable 
