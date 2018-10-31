@@ -23,6 +23,7 @@ pipeline
 					cd /d C:\Program Files\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_vault.txt llg00fic.uk.oracle.com
 				'''
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('C:\\chef\\Pipeline')]
 				
 			}
 		}        
