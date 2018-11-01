@@ -104,6 +104,10 @@ pipeline
 		always 
 		{
 			echo 'This will always run'
+			bat '''
+					cd /d C:\Program Files\PuTTY
+					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\Revertchange.txt llg00fic.uk.oracle.com
+			'''
 		}
 		success 
 		{
