@@ -45,7 +45,7 @@ pipeline
 				bat 'echo "Step 7"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_db.txt llg00fic.uk.oracle.com
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_db.txt llg00fic.uk.oracle.com
 				'''
 				winRMClient credentialsId: 'llg00fbd.uk.oracle.com_abc_1541051038', hostName: 'llg00fbd.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
@@ -57,7 +57,7 @@ pipeline
 				bat 'echo "Step 8"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\chef-repo\OCMS_files\install_mi.txt llg00fic.uk.oracle.com
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_mi.txt llg00fic.uk.oracle.com
 				'''
 				winRMClient credentialsId: 'llg00fbd.uk.oracle.com_abc_1541051038', hostName: 'llg00fbd.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
