@@ -7,7 +7,8 @@ pipeline
 		{
 			steps 
 			{
-				bat 'echo "Step 4"'                
+				bat 'echo "Step 4"' 
+				
 							
 			}
 		}
@@ -20,7 +21,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					rem plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\install_vault.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}        
 		stage('6.OCMS_HOSTNAME Prerequisites') 
@@ -32,7 +33,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('7.DB Installation') 
@@ -44,7 +45,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\install_db.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('8.MI Domain Creation') 
@@ -56,7 +57,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\install_mi.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('9.Starting Servers') 
@@ -68,7 +69,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\start_admin.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('10.OCMS_HOSTNAME Deployments') 
@@ -80,7 +81,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\install_ocms.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}
 		stage('11.Restarting All Servers') 
@@ -92,7 +93,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_HOSTNAME_files\\start_all_servers.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'Sample_ORADEVkurravi_1541748196', hostName: 'Sample', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'OCMS_CREDENTIALS', hostName: 'OCMS_HOSTNAME', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}        
 	}
