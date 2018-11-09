@@ -21,7 +21,7 @@ pipeline
 					cd /d C:\\Program Files\\PuTTY
 					rem plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\install_vault.txt llg00fic.uk.oracle.com
 				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
 			}
 		}        
 		stage('6.llg00fgg.uk.oracle.com Prerequisites') 
