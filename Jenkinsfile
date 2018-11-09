@@ -22,7 +22,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_vault.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}        
@@ -34,7 +34,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}
@@ -46,7 +46,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_db.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}
@@ -58,7 +58,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_mi.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}
@@ -70,7 +70,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_admin.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}
@@ -82,7 +82,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_ocms.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}
