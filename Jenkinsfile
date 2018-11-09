@@ -94,6 +94,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_all_servers.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
 				'''								
 			}
 		}        
@@ -105,7 +106,7 @@ pipeline
 			echo 'This will always run'
 			bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\Revertchange.txt llg00fic.uk.oracle.com
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\Revertchange.txt llg00fic.uk.oracle.com					
 			'''
 		}
 		success 
