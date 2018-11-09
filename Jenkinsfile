@@ -8,8 +8,10 @@ pipeline
 			steps 
 			{
 				bat 'echo "Step 4"' 
-				
-							
+				bat '''
+					cd /d C:\\Program Files\\PuTTY
+					echo y | plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\upload_databag.txt llg00fic.uk.oracle.com
+				'''								
 			}
 		}
 		stage('5.Vault Installation') 
@@ -19,21 +21,21 @@ pipeline
 				bat 'echo "Step 5"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					rem plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\install_vault.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_vault.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+				'''								
 			}
 		}        
-		stage('6.llg00fgg.uk.oracle.com Prerequisites') 
+		stage('6.OCMS Prerequisites') 
 		{
 			steps 
 			{
 				bat 'echo "Step 6"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+				'''								
 			}
 		}
 		stage('7.DB Installation') 
@@ -43,9 +45,9 @@ pipeline
 				bat 'echo "Step 7"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\install_db.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_db.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+				'''								
 			}
 		}
 		stage('8.MI Domain Creation') 
@@ -55,9 +57,9 @@ pipeline
 				bat 'echo "Step 8"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\install_mi.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_mi.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+				'''								
 			}
 		}
 		stage('9.Starting Servers') 
@@ -67,21 +69,21 @@ pipeline
 				bat 'echo "Step 9"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\start_admin.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_admin.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+				'''								
 			}
 		}
-		stage('10.llg00fgg.uk.oracle.com Deployments') 
+		stage('10.OCMS Deployments') 
 		{
 			steps 
 			{
 				bat 'echo "Step 10"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\install_ocms.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_ocms.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\run_chef_client.ps1'"
+				'''								
 			}
 		}
 		stage('11.Restarting All Servers') 
@@ -91,9 +93,8 @@ pipeline
 				bat 'echo "Step 11"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\start_all_servers.txt llg00fic.uk.oracle.com
-				'''
-				winRMClient credentialsId: 'llg00fgg.uk.oracle.com_ORADEV\\kurravi_1541753948', hostName: 'llg00fgg.uk.oracle.com', winRMOperations: [invokeCommand('cd /d C:\\chef'),invokeCommand('chef-client')]				
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_all_servers.txt llg00fic.uk.oracle.com
+				'''								
 			}
 		}        
 	}
@@ -104,7 +105,7 @@ pipeline
 			echo 'This will always run'
 			bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\llg00fgg.uk.oracle.com_files\\Revertchange.txt llg00fic.uk.oracle.com
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\Revertchange.txt llg00fic.uk.oracle.com
 			'''
 		}
 		success 
