@@ -18,7 +18,7 @@ pipeline
 			{				
 				bat 'echo "Step 5"'
 				bat '''
-					exit 1
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client2.ps1'"
 				'''								
 			}
 		}        
@@ -27,8 +27,7 @@ pipeline
 			steps 
 			{
 				bat 'echo "Step 6"'
-				bat '''
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+				bat '''					
 				'''								
 			}
 		}		        
