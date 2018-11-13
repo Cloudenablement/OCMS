@@ -14,15 +14,7 @@ pipeline
 			{
 				mail to: 'ravi.al.kumar@oracle.com','monal.kumar@oracle.com',
              				  subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             				  body: "Uploaded Databag SUCCESS
-					  Progress: (5% Completed)
-					  
-					  
-					  
-					  
-					  Regards,
-					  Cloud Enablement Team
-					  "
+             				  body: "Uploaded Databag SUCCESS\n\nProgress: (5% Completed)\n\n\n\n\n\nRegards,\nCloud Enablement Team"
 				bat 'echo "Step 4"' 
 				bat '''					
 				'''								
