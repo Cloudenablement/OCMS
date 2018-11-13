@@ -24,8 +24,8 @@ pipeline
 				bat 'echo "Step 5"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_vault.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_vault.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'Vault Installation' -param2 'Progress: (10% Completed)'  
 				'''								
 			}
 		}        
@@ -36,8 +36,8 @@ pipeline
 				bat 'echo "Step 6"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'OCMS Prerequisites' -param2 'Progress: (30% Completed)' 
 				'''								
 			}
 		}
@@ -48,8 +48,8 @@ pipeline
 				bat 'echo "Step 7"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_db.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_db.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'DB Installation' -param2 'Progress: (50% Completed)' 
 				'''								
 			}
 		}
@@ -60,8 +60,8 @@ pipeline
 				bat 'echo "Step 8"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_mi.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_mi.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'MI Domain Creation' -param2 'Progress: (70% Completed)' 
 				'''								
 			}
 		}
@@ -72,8 +72,8 @@ pipeline
 				bat 'echo "Step 9"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_admin.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_admin.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'Starting Servers' -param2 'Progress: (80% Completed)' 
 				'''								
 			}
 		}
@@ -84,8 +84,8 @@ pipeline
 				bat 'echo "Step 10"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_ocms.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\install_ocms.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'OCMS Deployments' -param2 'Progress: (90% Completed)' 
 				'''								
 			}
 		}
@@ -96,38 +96,27 @@ pipeline
 				bat 'echo "Step 11"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_all_servers.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'"
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\start_all_servers.txt llg00fic.uk.oracle.com					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'Restarting All Servers' -param2 'Progress: (100% Completed)' 
 				'''								
 			}
 		}        
 	}
 	post 
-	{
-		always 
-		{
-			echo 'This will always run'
-			bat '''
-					cd /d C:\\Program Files\\PuTTY
-					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\Revertchange.txt llg00fic.uk.oracle.com					
-			'''			
-		}
+	{		
 		success 
 		{
-			echo 'This will run only if successful'
+			echo 'OCMS INSTALLATION COMPLETED SUCCESSFULLY'
+			mail to: 'ravi.al.kumar@oracle.com,monal.kumar@oracle.com',
+             		     subject: "OCMS Installation Completed",
+             		     body: "Overall OCMS Setup Done Successfully.\n\nOCMS Server is ready now.\n\n\n\n\n\nRegards,\nCloud Enablement Team"								
 		}
 		failure 
-		{			
-			echo 'This will run only if failed'
-		}
-		unstable 
-		{
-			echo 'This will run only if the run was marked as unstable'
-		}
-		changed 
-		{
-			echo 'This will run only if the state of the Pipeline has changed'
-			echo 'For example, if the Pipeline was previously failing but is now successful'
-		}
+		{					
+			echo 'OCMS INSTALLATION FAILED'
+			mail to: 'ravi.al.kumar@oracle.com,monal.kumar@oracle.com',
+             		     subject: "OCMS Installation Failed",
+             		     body: "OCMS Setup Failed.\n\nPlease check the previous mails to know further details\n\n\n\n\n\nRegards,\nCloud Enablement Team"										
+		}		
 	}
 }
