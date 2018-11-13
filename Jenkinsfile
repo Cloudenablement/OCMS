@@ -11,6 +11,7 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					echo y|plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\upload_databag.txt llg00fic.uk.oracle.com
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'Uploading Databag' -param2 'Progress: (5% Completed)' 
 				'''								
 			}
 		}
@@ -18,9 +19,6 @@ pipeline
 		{
 			steps 
 			{	
-				mail to: 'ravi.al.kumar@oracle.com,monal.kumar@oracle.com',
-             				  subject: "OCMS Installation Status",
-             				  body: "Uploading Databag SUCCESS\n\nProgress: (5% Completed)\n\n\n\n\n\nRegards,\nCloud Enablement Team"				
 				bat 'echo "Step 5"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
