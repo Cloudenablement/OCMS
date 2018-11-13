@@ -107,10 +107,7 @@ pipeline
 			bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\Revertchange.txt llg00fic.uk.oracle.com					
-			'''
-			mail 	to: 'ravi.al.oracle.com',
-             		     	subject: "Pipeline: ${currentBuild.fullDisplayName}",
-             			body: "Build URL ${env.BUILD_URL}"
+			'''			
 		}
 		success 
 		{
