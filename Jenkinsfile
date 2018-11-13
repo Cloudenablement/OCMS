@@ -17,7 +17,10 @@ pipeline
 		stage('5.Vault Installation') 
 		{
 			steps 
-			{				
+			{	
+				mail to: 'ravi.al.kumar@oracle.com,monal.kumar@oracle.com',
+             				  subject: "OCMS Installation Status",
+             				  body: "Uploading Databag SUCCESS\n\nProgress: (5% Completed)\n\n\n\n\n\nRegards,\nCloud Enablement Team"				
 				bat 'echo "Step 5"'
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
