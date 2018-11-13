@@ -22,8 +22,8 @@ pipeline
 			steps 
 			{				
 				bat 'echo "Step 5"'
-				bat '''
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client2.ps1'"
+				bat '''					
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'Uploading Databag' -param2 'Progress: (5% Completed)' 
 				'''								
 			}
 		}        
