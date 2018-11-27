@@ -35,8 +35,11 @@ pipeline
 				bat '''
 					cd /d C:\\Program Files\\PuTTY
 					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\ocms_prerequisites.txt llg00fic.uk.oracle.com
-					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\install_jdk.ps1'" 
+					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\install_jdk.ps1'"
+					
 					powershell.exe -ExecutionPolicy Bypass -File "C:\install_weblogic.ps1"
+					
+					plink -ssh -l hgbu -pw hgbu -m C:\\chef-repo\\OCMS_files\\ocms_prerequisites2.txt llg00fic.uk.oracle.com
 					powershell.exe -NonInteractive -ExecutionPolicy Bypass "& 'C:\\run_chef_client.ps1'" -param1 'OCMS Prerequisites' -param2 'Progress: (30% Completed)' 
 				'''								
 			}
